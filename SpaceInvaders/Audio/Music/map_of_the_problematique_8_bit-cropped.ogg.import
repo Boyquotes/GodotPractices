@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/map_of_the_problematique_8_bit-cropped.ogg-5347c5ca5d5718a72ae596e250fc8851.oggstr"
+
+[deps]
+
+source_file="res://Audio/Music/map_of_the_problematique_8_bit-cropped.ogg"
+dest_files=[ "res://.import/map_of_the_problematique_8_bit-cropped.ogg-5347c5ca5d5718a72ae596e250fc8851.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
