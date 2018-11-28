@@ -7,18 +7,22 @@ const ALIEN_V_DIST = 32
 
 const STARS_SPEED = 100
 
-
-
 func _ready():
-	createAliens(1,1)
+	add_to_group(Constants.G_BATTLE_SCENE)
+	loadStage()
 	$AlienMove.start()
 
 func _process(delta):
 	$ParallaxBackground/Stars.motion_offset.y += STARS_SPEED*delta
 
-func loadLevel():
-	if(Manager.level > Constants.NUM_LEVELS-1):
+func loadStage():
+	if(Manager.stage > Constants.NUM_STAGES-1):
 		OS.alert("Level is out of range in BattleMap", "Signaling error")
+	var stage = Constants.STAGES[Manager.stage]
+	#Let's get sure there is no bullets on the scene
+	get_tree().call_group(Constants.G_LASER, "queue_free")
+	
+	createAliens(stage["Cols"], stage["Aliens"])
 
 func createAliens(col : int, aliens : int) -> void:	
 	var alienInstance = null

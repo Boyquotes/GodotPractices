@@ -146,4 +146,7 @@ blend_times = [  ]
 [node name="HUD" parent="." instance=ExtResource( 4 )]
 
 [connection signal="finished" from="Stage" to="." method="_on_Stage_finished"]
+[connection signal="load_next_stage" from="Stage" to="." method="_on_Stage_load_next_stage"]
+[connection signal="pause" from="Stage" to="." method="_on_Stage_pause"]
+[connection signal="resume" from="Stage" to="." method="_on_Stage_resume"]
 [connection signal="animation_finished" from="TransitionLayer/Transitions" to="." method="_on_Transitions_animation_finished"]

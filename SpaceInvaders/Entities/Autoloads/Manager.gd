@@ -8,12 +8,12 @@ var startGame : bool = false setget start_game_emitter
 var stage : int = 1 setget stage_emitter
 var movingTo = Constants.DIRECTION.RIGHT
 
-var level : int = 0
+
 
 var aliens_on_scene : int = 0 setget on_aliens_change
 
-func next_level():
-	level += 1
+func next_stage():
+	stage += 1
 
 func start_game_emitter(val : bool) -> void:
 	startGame = val

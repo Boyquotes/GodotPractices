@@ -18,7 +18,7 @@ _global_script_class_icons={
 config/name="SpaceInvaders"
 run/main_scene="res://Main.tscn"
 boot_splash/bg_color=Color( 0.113725, 0, 0.109804, 1 )
-config/icon="res://icon.png"
+config/icon="res://Graphics/icon.png"
 
 [autoload]
 
@@ -33,7 +33,7 @@ gdscript/warnings/unsafe_call_argument=true
 
 [display]
 
-window/size/height=1200
+window/size/height=800
 window/size/resizable=false
 
 [input]

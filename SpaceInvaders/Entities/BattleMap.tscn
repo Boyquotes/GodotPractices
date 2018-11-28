@@ -57,21 +57,21 @@ centered = false
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="Airship" parent="." instance=ExtResource( 3 )]
-position = Vector2( 0, 540 )
+position = Vector2( 0, 356 )
 
 [node name="Node2D" type="Node2D" parent="."]
 
 [node name="TopLeftCorner" type="Position2D" parent="Node2D"]
-position = Vector2( -512, -600 )
+position = Vector2( -512, -400 )
 
 [node name="TopRightCorner" type="Position2D" parent="Node2D"]
-position = Vector2( 512, -600 )
+position = Vector2( 512, -400 )
 
 [node name="BottomLeftCorner" type="Position2D" parent="Node2D"]
-position = Vector2( -512, 600 )
+position = Vector2( -512, 400 )
 
 [node name="BottomRighCorner" type="Position2D" parent="Node2D"]
-position = Vector2( 512, 600 )
+position = Vector2( 512, 400 )
 
 [node name="AlienMove" type="Timer" parent="."]
 process_mode = 1
