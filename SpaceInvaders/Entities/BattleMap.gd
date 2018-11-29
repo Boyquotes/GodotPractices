@@ -3,8 +3,8 @@ extends Node2D
 var alienFactory = preload("res://Entities/Alien.tscn")
 var bossFactory = preload("res://Entities/Boss.tscn")
 
-const ALIEN_H_DIST = 32
-const ALIEN_V_DIST = 32
+const ALIEN_H_DIST = 48
+const ALIEN_V_DIST = 48
 
 const STARS_SPEED = 100
 
