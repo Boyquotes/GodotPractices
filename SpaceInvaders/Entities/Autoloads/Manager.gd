@@ -3,16 +3,26 @@ extends Node
 signal S_START_GAME
 signal S_NEXT_STAGE
 signal S_ALIEN_CHANGED
+signal S_START_BOSS
 
 var startGame : bool = false setget start_game_emitter
 var stage : int = 1 setget stage_emitter
 var movingTo = Constants.DIRECTION.RIGHT
-
+var bossRequired : bool = false
 
 
 var aliens_on_scene : int = 0 setget on_aliens_change
 
-func next_stage():
+func resetBoss() -> void:
+	bossRequired = false
+
+func setBoss() -> void:
+	bossRequired = true
+
+func isBossRequired() -> bool:
+	return bossRequired
+
+func next_stage() -> void:
 	stage += 1
 
 func start_game_emitter(val : bool) -> void:
@@ -27,7 +37,10 @@ func stage_emitter(val : int) -> void:
 func on_aliens_change(val : int) -> void:
 	aliens_on_scene = val
 	if val == 0:
-		Manager.stage += 1
+		if !bossRequired:
+			Manager.stage += 1
+		else:
+			emit_signal("S_START_BOSS")
 	emit_signal("S_ALIEN_CHANGED")
 
 func moveAliens() -> void:
