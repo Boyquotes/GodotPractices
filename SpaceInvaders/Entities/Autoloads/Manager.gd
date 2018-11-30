@@ -4,12 +4,13 @@ signal S_START_GAME
 signal S_NEXT_STAGE
 signal S_ALIEN_CHANGED
 signal S_START_BOSS
+signal S_BOSS_CHANGED
 
 var startGame : bool = false setget start_game_emitter
 var stage : int = 1 setget stage_emitter
 var movingTo = Constants.DIRECTION.RIGHT
 var bossRequired : bool = false
-
+var bossHPPercent : float = 0.0 setget boss_hp_changed
 
 var aliens_on_scene : int = 0 setget on_aliens_change
 
@@ -32,6 +33,7 @@ func start_game_emitter(val : bool) -> void:
 
 func stage_emitter(val : int) -> void:
 	stage = val
+	movingTo =Constants.DIRECTION.RIGHT
 	emit_signal("S_NEXT_STAGE")
 	
 func on_aliens_change(val : int) -> void:
@@ -63,3 +65,7 @@ func exited(right : bool) -> void:
 		if movingTo == Constants.DIRECTION.LEFT:
 			get_tree().call_group(Constants.G_ALIEN, "moveDown")
 			movingTo = Constants.DIRECTION.RIGHT
+
+func boss_hp_changed(val : float) -> void:
+	bossHPPercent = val
+	emit_signal("S_BOSS_CHANGED")
