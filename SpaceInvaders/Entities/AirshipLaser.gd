@@ -22,3 +22,9 @@ func move(delta : float) -> void:
 
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
+
+func destroy():
+	$body.collision_layer = 0
+	$body.collision_mask = 0
+	$body/Sprite.visible = false
+	queue_free()

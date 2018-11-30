@@ -2,8 +2,6 @@ extends Node2D
 
 #const LASER_FACTORY = preload("res://Entities/")
 
-#signal boss_defeated
-
 const FLOOR_NORMAL = Vector2(0, 1)
 const SLOPE_SLIDE_STOP = 25.0
 const WALK_SPEED = 250
@@ -11,14 +9,16 @@ const MAX_SPEED_AND_IMPULSE = 400
 const Y_POS = -OS.window_position.y + 32
 
 var linear_vel : Vector2 = Vector2()
-var maxHP : int = 0
-var hp : int = 0
-#var defeated : bool = false setget onDefeated
+var maxHP : float = 0.0
+var hp : float = 0.0
+var defeated : bool = false
 var frozen : bool = false
 var direction : Vector2 = Vector2(1,0)
 var atacking : bool = false
 var lastAnimation : String = ""
-
+var minAtackTime : float = 0.0
+var maxAtackTime : float = 0.0
+var atackingTime : float = 0.0
 enum STATE{
 	LOADING,
 	MOVING,
@@ -32,12 +32,19 @@ func _ready():
 	hp = maxHP
 	add_to_group(Constants.G_ALIEN)
 	Manager.aliens_on_scene += 1
+	Manager.bossRequired = false
+	
 	get_tree().call_group(Constants.G_ALIEN, "freeze")
-	get_tree().call_group(Constants.G_AIRSHIP, "freeze")
-	get_tree().call_group(Constants.G_LASER, "queue_free")
+	get_tree().call_group(Constants.G_AIRSHIP, "freeze", true)
+	minAtackTime = 2.0/Manager.stage + 0.5
+	maxAtackTime = 1.0/Manager.stage
+	atackingTime = Manager.stage/2.0
+	
+	$Atack.wait_time = randf()/maxAtackTime+minAtackTime
+	$Atack.start()
 
 func _physics_process(delta):
-	if frozen:
+	if frozen or defeated:
 		return
 	match(state):
 		STATE.LOADING:
@@ -66,7 +73,7 @@ func process_collisions():
 		collider = $body.get_slide_collision(i).get_collider().get_parent()
 		if(collider.is_in_group(Constants.G_AIRSHIP_LASER)):
 			collider.queue_free()
-			hp -= 1
+			hurt(50)
 
 func unfreeze():
 	frozen = false
@@ -74,20 +81,21 @@ func unfreeze():
 func freeze():
 	frozen = true
 
-	
 func hurt(val):
 	hp -= val
 	if hp <= 0:
 		hp = 0
-		#defeated = true
+		onDefeated()
+	Manager.boss_hp_changed(hp / maxHP * 100)
 
-#func onDefeated(true):
-	#Run Animation
-#	emit_defeated()
+func onDefeated() -> void:
+	defeated = true
+	$AnimationPlayer.play("Die")
 	
-
-#func emit_defeated():
-	#emit_signal(self.boss_defeated)
+func emitBossDefeated():
+	Manager.aliens_on_scene -= 1
+	#Manager.bossRequired = false
+	#emit_signal("boss_defeated")
 
 func finish_loading_anim():
 	get_tree().call_group(Constants.G_ALIEN, "unfreeze")

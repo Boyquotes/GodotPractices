@@ -17,9 +17,9 @@ enum DIRECTION{
 const NUM_STAGES = 6
 const STAGES = {
 	1 : {"Cols" : 5, "Aliens": 5, "Boss" : true},
-	2 : {"Cols" : 5, "Aliens": 20, "Boss" : false},
+	2 : {"Cols" : 5, "Aliens": 20, "Boss" : true},
 	3 : {"Cols" : 7, "Aliens": 35, "Boss" : false},
-	4 : {"Cols" : 8, "Aliens": 48, "Boss" : false},
+	4 : {"Cols" : 8, "Aliens": 48, "Boss" : true},
 	5 : {"Cols" : 9, "Aliens": 54, "Boss" : false},
 	6 : {"Cols" : 10, "Aliens": 100, "Boss" : false},
 }

@@ -18,7 +18,7 @@ func _process(delta):
 	$ParallaxBackground/Stars.motion_offset.y += STARS_SPEED*delta
 
 func loadStage():
-	if(Manager.stage > Constants.NUM_STAGES-1):
+	if(Manager.stage > Constants.NUM_STAGES):
 		OS.alert("Level is out of range in BattleMap", "Signaling error")
 	var stage = Constants.STAGES[Manager.stage]
 	#Let's get sure there is no bullets on the scene
@@ -45,7 +45,7 @@ func createAliens(col : int, aliens : int) -> void:
 			rowIdx += 1
 		alienIdx += 1
 
-func loadBoss():
+func loadBoss():	
 	var boss = bossFactory.instance()
 	$Enemies.add_child(boss)
 	boss.setGlobalPosition(Vector2(0,0))

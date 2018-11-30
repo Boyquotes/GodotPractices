@@ -74,8 +74,10 @@ func process_collisions():
 func unfreeze():
 	frozen = false
 
-func freeze():
+func freeze(clean : bool = false):
 	frozen = true
+	if clean:
+		get_tree().call_group(Constants.G_LASER, "queue_free")
 
 func _on_ShootCooldown_timeout():
 	shootCooldown = false

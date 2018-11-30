@@ -36,6 +36,12 @@ func freeze():
 func setGlobalPosition(position : Vector2) -> void:
 	$body.global_position = position
 
+func destroy():
+	$body.collision_layer = 0
+	$body.collision_mask = 0
+	$body/Sprite.visible = false
+	queue_free()
+
 func _on_VisibilityNotifier_screen_exited():
 	Manager.exited($body.global_position.x > 0)
 

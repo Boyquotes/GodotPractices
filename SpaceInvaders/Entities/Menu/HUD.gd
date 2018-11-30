@@ -37,4 +37,6 @@ func on_start_boss():
 	$Control/VBoxContainer/ProgressBar.visible = true
 
 func on_boss_changed():
+	if Manager.bossHPPercent == 0:
+		$Control/VBoxContainer/ProgressBar.visible = false
 	$Control/VBoxContainer/ProgressBar.value = Manager.bossHPPercent
