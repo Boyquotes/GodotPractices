@@ -1,27 +1,57 @@
 extends Node2D
+signal s_wave_end
+signal s_stage_end
 
-var pathA : PathFollow2D = null
-var pathB : PathFollow2D = null
-var pathC : PathFollow2D = null
-var pathD : PathFollow2D = null
-
-export var speedA : float = 1.0
-export var speedB : float = 1.0
-export var speedC : float = 1.0
-export var speedD : float = 1.0
+var enemies = Constants.MAP_WAVES[Constants.Map.M1]
+var wave = null
 
 func _ready():
-	pathA = find_node("FollowA")
-	pathB = find_node("FollowB")
-	pathC = find_node("FollowC")
-	pathD = find_node("FollowD")
+	loadEnemies(Constants.Map.M1)
 
-func _physics_process(delta):
-	if pathA:
-		pathA.offset += delta*speedA
-	if pathB:
-		pathB.offset += delta*speedB
-	if pathC:
-		pathC.offset += delta*speedC
-	if pathD:
-		pathD.offset += delta*speedD
+func loadEnemies(map) -> void:
+	enemies = Constants.MAP_WAVES[map]
+	Manager.wave = 1
+	Manager.total_waves = enemies["Num Waves"]
+	Manager.enemies_remaining = loadNumberOfEnemies()
+	print(Manager.enemies_remaining)
+	loadWave()
+
+func loadWave():
+	wave = enemies["Waves"][Manager.wave-1]
+	Manager.enemies_remaining_on_wave = loadNumberOfEnemiesOnWave(Manager.wave-1)
+func loadNumberOfEnemies() -> int:
+	var num_enemies = 0
+	for wave in range(enemies["Waves"].size()):
+		num_enemies += loadNumberOfEnemiesOnWave(wave)
+	return num_enemies
+
+func loadNumberOfEnemiesOnWave(wave_num : int) -> int:
+	var num_enemies = 0
+	var wave  = enemies["Waves"][wave_num]
+	for wave_round in wave["A"]:
+		num_enemies += wave_round.values()[0]
+	for wave_round in wave["B"]:
+		num_enemies += wave_round.values()[0]
+	for wave_round in wave["C"]:
+		num_enemies += wave_round.values()[0]
+	for wave_round in wave["D"]:
+		num_enemies += wave_round.values()[0]
+	return num_enemies
+	
+func _on_SpawnTimer_timeout():
+	if Manager.enemies_remaining == 0:
+		if Manager.total_waves == Manager.wave:
+			emit_signal("s_stage_end")
+			return
+		emit_signal("s_wave_end")
+		return
+	var enemyType = wave["A"][0].keys()[0]
+	if(wave["A"][Manager.wave_round][enemyType]) <= 0:
+		pass
+	var follow = PathFollow2D.new()
+	follow.add_child(Constants.enemyFactory[enemyType].instance())
+	follow.set_name("FollowA")
+	$PathA.add_child(follow)
+	follow.rotation = 0
+	wave["A"][0][enemyType] -= 1
+	print(wave["A"])

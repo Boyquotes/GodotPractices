@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Entities/Maps/Map.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Tilesets/tileset.tres" type="TileSet" id=2]
-[ext_resource path="res://Entities/Enemies/Enemy.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Entities/MapElements/Exit.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Entities/MapElements/Exit.tscn" type="PackedScene" id=3]
 
 [sub_resource type="Curve2D" id=1]
 
@@ -13,10 +12,6 @@ _data = {
 
 [node name="Map" type="Node2D"]
 script = ExtResource( 1 )
-speedA = 550.0
-speedB = 1.0
-speedC = 1.0
-speedD = 1.0
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 2 )
@@ -27,15 +22,13 @@ tile_data = PoolIntArray( -327688, 0, 65536, -327687, 0, 65537, -327686, 0, 6553
 [node name="PathA" type="Path2D" parent="."]
 curve = SubResource( 1 )
 
-[node name="FollowA" type="PathFollow2D" parent="PathA"]
-position = Vector2( -208, -144 )
-rotate = false
-
-[node name="Enemy" parent="PathA/FollowA" instance=ExtResource( 3 )]
-
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 
-[node name="ExitA" parent="." instance=ExtResource( 4 )]
+[node name="ExitA" parent="." instance=ExtResource( 3 )]
 position = Vector2( 0, 80 )
 
+[node name="SpawnTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
