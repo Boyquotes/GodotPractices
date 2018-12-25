@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/sprites.png-8175934374b6eac96a0fa48515db1576.stex"
+path="res://.import/grass.png-c94463d1a0e4638d657d6d67d4c70f47.stex"
 
 [deps]
 
-source_file="res://Graphics/sprites.png"
-dest_files=[ "res://.import/sprites.png-8175934374b6eac96a0fa48515db1576.stex" ]
+source_file="res://Graphics/Tilesets/grass.png"
+dest_files=[ "res://.import/grass.png-c94463d1a0e4638d657d6d67d4c70f47.stex" ]
 
 [params]
 
@@ -17,7 +17,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -27,5 +27,5 @@ process/HDR_as_SRGB=false
 process/invert_color=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0
