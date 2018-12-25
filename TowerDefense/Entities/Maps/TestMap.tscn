@@ -28,7 +28,3 @@ current = true
 [node name="ExitA" parent="." instance=ExtResource( 3 )]
 position = Vector2( 0, 80 )
 
-[node name="SpawnTimer" type="Timer" parent="."]
-autostart = true
-
-[connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]

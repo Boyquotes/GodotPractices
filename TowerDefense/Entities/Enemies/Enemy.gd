@@ -6,12 +6,27 @@ var magDef : float = 0.0 setget magDefSet
 var speed = 50
 var points : float = 5
 var follow : PathFollow2D = null
+var turnToAppear : int = 5
 
 func _ready():
 	add_to_group(Constants.G_ENEMY)
+	add_to_group(Constants.G_ENEMY_ASLEEP)
 	follow = get_parent()
+	visible = false
+
+func setTurn(turn : int) -> void:
+	turnToAppear = turn+1
+
+func wakeUp() -> void:
+	turnToAppear -= 1
+	if turnToAppear <= 0:
+		turnToAppear = 0
+		remove_from_group(Constants.G_ENEMY_ASLEEP)
+		visible = true
 
 func _physics_process(delta):
+	if turnToAppear != 0:
+		return #we are asleep
 	follow.offset += delta*speed
 
 func receiveDamage(fis : float = 0, mag : float = 0) -> void:

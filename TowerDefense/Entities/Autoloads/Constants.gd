@@ -2,10 +2,12 @@
 extends Node
 
 var enemyDefaultFactory = preload("res://Entities/Enemies/Enemy.tscn")
+var poroFactory = preload("res://Entities/Enemies/Poro/Poro.tscn")
 
 const G_TOWER = "Tower"
 const G_PROYECTILE = "Proyectile"
 const G_ENEMY = "Enemy"
+const G_ENEMY_ASLEEP = "EnemyAsleep"
 
 enum Map {
 	M1,
@@ -14,11 +16,13 @@ enum Map {
 }
 
 enum Enemy {
-	Default
+	Default,
+	Poro
 }
 
 var enemyFactory = {
-	Enemy.Default : enemyDefaultFactory
+	Enemy.Default : enemyDefaultFactory,
+	Enemy.Poro : poroFactory
 }
 
 const MAP_WAVES = {
@@ -27,12 +31,12 @@ const MAP_WAVES = {
 		"Waves" : [
 			{
 				"A" : [
-					{Enemy.Default: 1}
+					{Enemy.Default: 2}
 				],
 				"B" : {},
 				"C" : {},
 				"D" : {}
-			},
+			}
 		]
 	}
 }
