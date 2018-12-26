@@ -48,5 +48,18 @@ func magDefSet(def : float) -> void:
 func getPoints() -> float:
 	return points
 
+func getGlobalPosition() -> float:
+	return $Area2D.global_position
+
 func die() -> void:
+	queue_free()
+
+func _on_Area2D_body_entered(body):
+	var proyectile = body.get_parent()
+	if !proyectile.is_in_group(Constants.G_PROYECTILE):
+		return
+	var fisDmg = proyectile.getFisDmg()
+	var magDmg = proyectile.getMagDmg()
+	receiveDamage(fisDmg, magDmg)
+	proyectile.queue_free()
 	queue_free()
