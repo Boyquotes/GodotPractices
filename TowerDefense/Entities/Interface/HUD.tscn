@@ -1,0 +1,65 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Entities/Interface/HUD.gd" type="Script" id=1]
+
+[node name="HUD" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 1 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="HBoxContainer"]
+margin_right = 5.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 5, 0 )
+color = Color( 0, 0, 0, 0 )
+
+[node name="WaveLabel" type="Label" parent="HBoxContainer"]
+margin_left = 9.0
+margin_top = 13.0
+margin_right = 52.0
+margin_bottom = 27.0
+text = "Wave: "
+
+[node name="Wave" type="Label" parent="HBoxContainer"]
+margin_left = 56.0
+margin_top = 13.0
+margin_right = 64.0
+margin_bottom = 27.0
+text = "0"
+
+[node name="EnemiesLabel" type="Label" parent="HBoxContainer"]
+margin_left = 68.0
+margin_top = 13.0
+margin_right = 131.0
+margin_bottom = 27.0
+text = "Enemies: "
+
+[node name="Enemies" type="Label" parent="HBoxContainer"]
+margin_left = 135.0
+margin_top = 13.0
+margin_right = 143.0
+margin_bottom = 27.0
+text = "0"
+
+[node name="ResourcesLabel" type="Label" parent="HBoxContainer"]
+margin_left = 147.0
+margin_top = 13.0
+margin_right = 221.0
+margin_bottom = 27.0
+text = "Resources: "
+
+[node name="Resources" type="Label" parent="HBoxContainer"]
+margin_left = 225.0
+margin_top = 13.0
+margin_right = 233.0
+margin_bottom = 27.0
+text = "0"
+

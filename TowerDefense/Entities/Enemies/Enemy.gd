@@ -52,6 +52,8 @@ func getGlobalPosition() -> float:
 	return $Area2D.global_position
 
 func die() -> void:
+	Manager.enemies_remaining_on_wave -= 1
+	Manager.enemies_remaining -= 1
 	queue_free()
 
 func _on_Area2D_body_entered(body):
@@ -62,4 +64,4 @@ func _on_Area2D_body_entered(body):
 	var magDmg = proyectile.getMagDmg()
 	receiveDamage(fisDmg, magDmg)
 	proyectile.queue_free()
-	queue_free()
+	die()

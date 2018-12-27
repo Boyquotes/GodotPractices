@@ -36,6 +36,14 @@ const MAP_WAVES = {
 				"B" : {},
 				"C" : {},
 				"D" : {}
+			},
+			{
+				"A" : [
+					{Enemy.Default: 2}, {Enemy.Default: 6}
+				],
+				"B" : {},
+				"C" : {},
+				"D" : {}
 			}
 		]
 	}

@@ -21,7 +21,9 @@ func loadEnemies(map) -> void:
 
 func loadWave():
 	wave = enemies["Waves"][Manager.wave]
-	Manager.enemies_remaining_on_wave = loadNumberOfEnemiesOnWave(Manager.wave)
+	Manager.total_enemies_on_wave = loadNumberOfEnemiesOnWave(Manager.wave)
+	Manager.enemies_remaining_on_wave = Manager.total_enemies_on_wave
+	
 
 func loadNumberOfEnemies() -> int:
 	var num_enemies = 0

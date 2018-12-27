@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Entities/Maps/Map.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Tilesets/tileset.tres" type="TileSet" id=2]
 [ext_resource path="res://Entities/MapElements/Exit.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Entities/Towers/Tower.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Entities/Interface/HUD.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Curve2D" id=1]
 
@@ -31,4 +32,8 @@ position = Vector2( 0, 80 )
 
 [node name="Tower" parent="." instance=ExtResource( 4 )]
 position = Vector2( -48, -11 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="CanvasLayer" instance=ExtResource( 5 )]
 
