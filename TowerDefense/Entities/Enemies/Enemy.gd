@@ -17,7 +17,9 @@ func _ready():
 	visible = false
 	$Area2D/Name.text = enemyName
 	$Area2D/HPBar.value = 100.0
-
+	#This should dissapear and be in the subclasses
+	setAttrs(1.0, 1.0, 25, 10)
+	
 func setTurn(turn : int) -> void:
 	turnToAppear = turn+1
 
@@ -46,15 +48,16 @@ func setAttrs(_fisDef : float, _magDef : float, _HP : float, _points : int) -> v
 	fisDefSet(_fisDef)
 	magDefSet(_magDef)
 	points = _points
+	Manager.points += points
 	
 func fisDefSet(def : float) -> void:
-	if def > 0:
-		OS.assert("Defense can't be more than 1.")
+	if def > 1.0:
+		OS.alert("Defense can't be more than 1.")
 	fisDef = def
 
 func magDefSet(def : float) -> void:
-	if def > 0:
-		OS.assert("Defense can't be more than 1.")
+	if def > 1.0:
+		OS.alert("Defense can't be more than 1.")
 	magDef = def
 
 func getPoints() -> float:
@@ -63,9 +66,11 @@ func getPoints() -> float:
 func getGlobalPosition() -> float:
 	return $Area2D.global_position
 
-func die() -> void:
+func die(pointsUpdate : bool = false) -> void:
 	Manager.enemies_remaining_on_wave -= 1
 	Manager.enemies_remaining -= 1
+	if pointsUpdate:
+		Manager.points -= points
 	queue_free()
 
 func _on_Area2D_body_entered(body):

@@ -4,6 +4,8 @@ var enemies = Constants.MAP_WAVES[Constants.Map.M1]
 var wave = null
 
 func _ready():
+	if(Manager.connect("wave_finished", self, "_on_waveFinished")):
+		OS.alert("Error when connecting wave_finished on Map")
 	loadEnemies(Constants.Map.M1)
 	var timer = Timer.new()
 	timer.one_shot = false
@@ -58,6 +60,9 @@ func createWaveRound(wave) -> void:
 			$PathA.add_child(follow)
 			enemy.setTurn(turn_offset)
 			turn_offset += 1
-		
+
+func _on_waveFinished():
+	print("Wave finished")
+
 func _on_Spawn():
 	get_tree().call_group(Constants.G_ENEMY_ASLEEP, "wakeUp")

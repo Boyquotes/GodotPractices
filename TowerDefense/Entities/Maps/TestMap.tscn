@@ -29,7 +29,7 @@ curve = SubResource( 1 )
 current = true
 
 [node name="ExitA" parent="." instance=ExtResource( 3 )]
-position = Vector2( 0, 80 )
+position = Vector2( -208, -64 )
 
 [node name="Tower" parent="." instance=ExtResource( 4 )]
 position = Vector2( -48, -11 )

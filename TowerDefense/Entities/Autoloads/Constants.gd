@@ -12,7 +12,9 @@ const G_ENEMY_ASLEEP = "EnemyAsleep"
 enum Map {
 	M1,
 	M2,
-	M3
+	M3,
+	M4,
+	M5
 }
 
 enum Enemy {
@@ -46,5 +48,9 @@ const MAP_WAVES = {
 				"D" : {}
 			}
 		]
-	}
+	},
+	Map.M2 : {},
+	Map.M3 : {},
+	Map.M4 : {},
+	Map.M5 : {}
 }
