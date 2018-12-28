@@ -34,40 +34,30 @@ func loadNumberOfEnemies() -> int:
 func loadNumberOfEnemiesOnWave(wave_num : int, loadToMemory : bool = true) -> int:
 	var num_enemies = 0
 	var wave  = enemies["Waves"][wave_num]
-	var turn_offset = 0
-	for wave_round in wave["A"]:
-		print(wave_round)
-		num_enemies += wave_round.values()[0]
-		if loadToMemory:
-			createWaveRound(wave_round, turn_offset)
-		turn_offset += wave_round.values()[0]
-	for wave_round in wave["B"]:
-		num_enemies += wave_round.values()[0]
-		if loadToMemory:
-			createWaveRound(wave_round, turn_offset)
-		turn_offset += wave_round.values()[0]
-	for wave_round in wave["C"]:
-		num_enemies += wave_round.values()[0]
-		if loadToMemory:
-			createWaveRound(wave_round, turn_offset)
-		turn_offset += wave_round.values()[0]
-	for wave_round in wave["D"]:
-		num_enemies += wave_round.values()[0]
-		if loadToMemory:
-			createWaveRound(wave_round, turn_offset)
-		turn_offset += wave_round.values()[0]
+	var waveA = wave["A"]
+	#var waveB = wave["B"][0]
+	#var waveC = wave["C"][0]
+	#var waveD = wave["D"][0]
+	
+	for i in waveA.size():
+		num_enemies += waveA[i].values()[0]
+	if loadToMemory:
+		createWaveRound(waveA)
 	return num_enemies
 
-func createWaveRound(wave_round, _turn_offset : int) -> void:
-	var enemyType = Constants.enemyFactory[wave_round.keys()[0]]
-	for _enemy in range(wave_round.values()[0]):
-		var follow = PathFollow2D.new()
-		var enemy = enemyType.instance()
-		follow.add_child(enemy)
-		follow.set_name("FollowA")
-		$PathA.add_child(follow)
-		enemy.setTurn(_turn_offset)
-		_turn_offset += 1
+func createWaveRound(wave) -> void:
+	var turn_offset = 0
+	for i in wave.size():
+		var enemyType = wave[i].keys()[0]
+		var num_enemies = wave[i].values()[0]
+		for j in num_enemies:
+			var follow = PathFollow2D.new()
+			var enemy = Constants.enemyFactory[enemyType].instance()
+			follow.add_child(enemy)
+			follow.set_name("FollowA")
+			$PathA.add_child(follow)
+			enemy.setTurn(turn_offset)
+			turn_offset += 1
 		
 func _on_Spawn():
 	get_tree().call_group(Constants.G_ENEMY_ASLEEP, "wakeUp")

@@ -31,7 +31,7 @@ const MAP_WAVES = {
 		"Waves" : [
 			{
 				"A" : [
-					{Enemy.Default: 2, Enemy.Poro: 4}
+					{Enemy.Default: 2}, {Enemy.Poro: 4}
 				],
 				"B" : {},
 				"C" : {},

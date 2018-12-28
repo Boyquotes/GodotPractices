@@ -4,6 +4,3 @@
 
 [node name="Poro" instance=ExtResource( 1 )]
 
-[node name="CanvasModulate" type="CanvasModulate" parent="." index="2"]
-color = Color( 1, 0.239216, 0.239216, 1 )
-

@@ -36,6 +36,20 @@ texture = ExtResource( 2 )
 hframes = 2
 frame = 1
 
+[node name="Name" type="Label" parent="Area2D"]
+margin_left = -22.0
+margin_top = -35.0
+margin_right = 21.0
+margin_bottom = -21.0
+text = "Enemy"
+
+[node name="HPBar" type="ProgressBar" parent="Area2D"]
+margin_left = -21.0
+margin_top = -25.0
+margin_right = 20.0
+margin_bottom = -11.0
+percent_visible = false
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Animate"
 anims/Animate = SubResource( 1 )

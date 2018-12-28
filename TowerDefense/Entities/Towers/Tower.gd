@@ -9,8 +9,8 @@ var areaColour = Color(0.8, 0.2, 0.2, ALPHA)
 var cooldown : bool = false
 
 var towerName : String = "Tower"
-var fisDmg : float = 5.0
-var magDmg : float = 5.0
+var fisDmg : float = 7.0
+var magDmg : float = 7.0
 
 func _on_Clicking_input_event(_viewport, event, _shape_idx):
 	if event.is_pressed():
