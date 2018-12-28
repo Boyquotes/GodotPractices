@@ -36,6 +36,7 @@ func loadNumberOfEnemiesOnWave(wave_num : int, loadToMemory : bool = true) -> in
 	var wave  = enemies["Waves"][wave_num]
 	var turn_offset = 0
 	for wave_round in wave["A"]:
+		print(wave_round)
 		num_enemies += wave_round.values()[0]
 		if loadToMemory:
 			createWaveRound(wave_round, turn_offset)

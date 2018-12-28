@@ -1,9 +1,10 @@
 #warnings-disable
 extends Node
 
-signal enemies_update
 signal wave_update
+signal enemies_update
 
+#Waves
 var points : float = 0.0
 var wave : int = 0 setget setWave
 var total_waves : int = 0
@@ -12,7 +13,8 @@ var enemies_remaining : int = 0
 var enemies_remaining_on_wave : int = 0 setget setEnemies
 var total_enemies_on_wave : int = 0
 
-var towerSelected = null
+#Tower selection and upgrades
+var towerSelected = null setget selectTower
 
 func setWave(val : int) -> void:
 	wave = val
@@ -21,3 +23,6 @@ func setWave(val : int) -> void:
 func setEnemies(val : int) -> void:
 	enemies_remaining_on_wave = val
 	emit_signal("enemies_update")
+
+func selectTower(tower) -> void:
+	print("Tower selected")

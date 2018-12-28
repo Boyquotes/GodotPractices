@@ -8,6 +8,9 @@ var radius : float = 50.0
 var areaColour = Color(0.8, 0.2, 0.2, ALPHA)
 var cooldown : bool = false
 
+var towerName : String = "Tower"
+var fisDmg : float = 5.0
+var magDmg : float = 5.0
 
 func _on_Clicking_input_event(_viewport, event, _shape_idx):
 	if event.is_pressed():
@@ -31,6 +34,7 @@ func shoot() -> void:
 	var proyectile = proyectileFactory.instance()
 	get_tree().get_root().add_child(proyectile)
 	proyectile.setGlobalPosition($Area2D/SourceOfSpell.global_position)
+	proyectile.setAttr(fisDmg, magDmg)
 	$Cooldown.start()
 	cooldown = true
 	$AnimationPlayer.play("Attacking")
@@ -41,3 +45,6 @@ func _on_Cooldown_timeout():
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "Attacking":
 		$AnimationPlayer.play("Idle")
+
+func getName():
+	return towerName

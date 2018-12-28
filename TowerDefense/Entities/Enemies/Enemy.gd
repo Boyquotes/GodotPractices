@@ -1,8 +1,8 @@
 extends Node2D
 
-var HP : float = 5.0
-var fisDef : float = 0.0 setget fisDefSet
-var magDef : float = 0.0 setget magDefSet
+var HP : float = 50.0
+var fisDef : float = 1.0 setget fisDefSet
+var magDef : float = 1.0 setget magDefSet
 var speed = 50
 var points : float = 5
 var follow : PathFollow2D = null
@@ -64,4 +64,3 @@ func _on_Area2D_body_entered(body):
 	var magDmg = proyectile.getMagDmg()
 	receiveDamage(fisDmg, magDmg)
 	proyectile.queue_free()
-	die()
