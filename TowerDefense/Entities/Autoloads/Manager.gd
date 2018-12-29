@@ -15,6 +15,8 @@ var enemies_remaining : int = 0
 var enemies_remaining_on_wave : int = 0 setget setEnemies
 var total_enemies_on_wave : int = 0
 
+var levels_passed = 0
+
 #Tower selection and upgrades
 var towerSelected = null setget selectTower
 

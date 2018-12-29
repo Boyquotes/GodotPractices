@@ -3,15 +3,15 @@
 [ext_resource path="res://Fonts/pixelfj8pt1.normal.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Entities/Interface/StartingScreen.gd" type="Script" id=2]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=1]
 
 font_data = ExtResource( 1 )
 
-[sub_resource type="Theme" id=3]
+[sub_resource type="Theme" id=2]
 
-default_font = SubResource( 2 )
+default_font = SubResource( 1 )
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=3]
 
 size = 42
 extra_spacing_top = 8
@@ -23,10 +23,11 @@ font_data = ExtResource( 1 )
 [node name="StartingScreen" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = SubResource( 3 )
+theme = SubResource( 2 )
 script = ExtResource( 2 )
 
 [node name="MainMenu" type="VBoxContainer" parent="."]
+editor/display_folded = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 
@@ -42,7 +43,7 @@ margin_top = 54.0
 margin_right = 736.0
 margin_bottom = 118.0
 size_flags_horizontal = 6
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 3 )
 text = "Tower Defense"
 
 [node name="MiddleSeparator" type="ColorRect" parent="MainMenu"]
@@ -132,4 +133,5 @@ margin_bottom = 599.0
 [connection signal="pressed" from="MainMenu/VBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="pressed" from="MainMenu/VBoxContainer/ExitButton" to="." method="_on_ExitButton_pressed"]
 [connection signal="item_selected" from="Levels/ItemList" to="." method="_on_ItemList_item_selected"]
+[connection signal="pressed" from="Levels/Panel/HBoxContainer/Start" to="." method="_on_Start_pressed"]
 [connection signal="pressed" from="Levels/Panel/HBoxContainer/BackToMain" to="." method="_on_BackToMain_pressed"]
