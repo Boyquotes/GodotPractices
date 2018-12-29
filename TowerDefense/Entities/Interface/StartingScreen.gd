@@ -31,8 +31,9 @@ func _on_StartButton_pressed():
 
 func _on_Start_pressed():
 	var transition = TITLE_TRANSITION_FACTORY.instance()
-	get_tree().get_root().add_child(transition)
-	transition.fadeOut()
-	yield(transition, "fade_out")
+	add_child(transition)
+	transition.fadeInBackground()
+	yield(transition, "fade_in")
+	
 	if(get_tree().change_scene(MAIN_SCENE)):
 		OS.alert("Error when changing scene from Starting Screen to a stage")

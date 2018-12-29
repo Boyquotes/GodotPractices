@@ -4,6 +4,11 @@ extends Node
 var enemyDefaultFactory = preload("res://Entities/Enemies/Enemy.tscn")
 var poroFactory = preload("res://Entities/Enemies/Poro/Poro.tscn")
 
+#Maps
+var MAPS_FACTORY = {
+	Map.M1: load("res://Entities/Maps/TestMap.tscn")
+}
+
 const G_TOWER = "Tower"
 const G_PROYECTILE = "Proyectile"
 const G_ENEMY = "Enemy"

@@ -6,6 +6,10 @@ signal enemies_update
 signal wave_finished
 signal points_update
 
+#Gameplay
+var levels_passed = 0
+var current_level = Constants.Map.M1
+
 #Waves
 var points : float = 0.0 setget setPoints
 var wave : int = 0 setget setWave
@@ -14,8 +18,6 @@ var total_enemies : int = 0
 var enemies_remaining : int = 0
 var enemies_remaining_on_wave : int = 0 setget setEnemies
 var total_enemies_on_wave : int = 0
-
-var levels_passed = 0
 
 #Tower selection and upgrades
 var towerSelected = null setget selectTower
