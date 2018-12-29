@@ -8,7 +8,7 @@ signal points_update
 
 #Gameplay
 var levels_passed = 0
-var current_level = Constants.Map.M1
+var current_level_map = Constants.Map.M1
 
 #Waves
 var points : float = 0.0 setget setPoints

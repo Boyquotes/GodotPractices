@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="TowerDefense"
-run/main_scene="res://Entities/Maps/TestMap.tscn"
+run/main_scene="res://Entities/Interface/StartingScreen.tscn"
 config/icon="res://icon.png"
 
 [autoload]

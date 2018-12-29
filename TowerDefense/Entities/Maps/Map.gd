@@ -1,12 +1,13 @@
 extends Node2D
 
+signal wave_finished
+
 var enemies = Constants.MAP_WAVES[Constants.Map.M1]
 var wave = null
 
 func _ready():
 	if(Manager.connect("wave_finished", self, "_on_waveFinished")):
 		OS.alert("Error when connecting wave_finished on Map")
-	loadEnemies(Constants.Map.M1)
 	var timer = Timer.new()
 	timer.one_shot = false
 	timer.wait_time = 1.0
@@ -62,7 +63,7 @@ func createWaveRound(wave) -> void:
 			turn_offset += 1
 
 func _on_waveFinished():
-	print("Wave finished")
+	emit_signal("wave_finished")
 
 func _on_Spawn():
 	get_tree().call_group(Constants.G_ENEMY_ASLEEP, "wakeUp")

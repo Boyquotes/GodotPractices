@@ -90,7 +90,7 @@ margin_top = 276.0
 margin_right = 777.0
 margin_bottom = 324.0
 custom_fonts/font = SubResource( 1 )
-custom_colors/font_color = Color( 1, 1, 1, 0 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Title hasn't been set"
 
 [node name="TitleFade" type="AnimationPlayer" parent="."]
