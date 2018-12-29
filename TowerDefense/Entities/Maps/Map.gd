@@ -1,6 +1,7 @@
 extends Node2D
 
 signal wave_finished
+signal map_finished
 
 var enemies = Constants.MAP_WAVES[Constants.Map.M1]
 var wave = null
@@ -23,6 +24,10 @@ func loadEnemies(map) -> void:
 	loadWave()
 
 func loadWave():
+	if Manager.wave > Manager.total_waves:
+		emit_signal("map_finished")
+		return
+		
 	wave = enemies["Waves"][Manager.wave]
 	Manager.total_enemies_on_wave = loadNumberOfEnemiesOnWave(Manager.wave)
 	Manager.enemies_remaining_on_wave = Manager.total_enemies_on_wave
@@ -63,6 +68,7 @@ func createWaveRound(wave) -> void:
 			turn_offset += 1
 
 func _on_waveFinished():
+	Manager.wave += 1
 	emit_signal("wave_finished")
 
 func _on_Spawn():
